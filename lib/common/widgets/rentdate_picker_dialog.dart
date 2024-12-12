@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../../model/book_model.dart';
+import '../../providers/rent_provider.dart';
 import '../../services/khalti_payment_service.dart';
 class RentDatePickerDialog extends StatelessWidget {
   final Book book;
