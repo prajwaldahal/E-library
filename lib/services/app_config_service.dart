@@ -1,3 +1,4 @@
+import 'package:elibrary/common/constants/api_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
@@ -5,7 +6,7 @@ import 'package:http/http.dart' as http;
 class AppConfigService {
   static Future<bool> checkServerConnection() async {
     try {
-      final response = await http.get(Uri.parse('https://your-server-url.com'));
+      final response = await http.get(Uri.parse(Constants.baseApiServer));
       if (response.statusCode == 200) {
         return true;
       } else {

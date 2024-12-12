@@ -95,8 +95,6 @@ class _ProfileViewState extends State<ProfileView> {
               title: const Text('Log Out', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
               onTap: () async {
                 await SecureStorageHelper.delete('uid');
-                await SecureStorageHelper.delete('token');
-
                 AuthService authService = AuthService();
                 await authService.signOut();
 

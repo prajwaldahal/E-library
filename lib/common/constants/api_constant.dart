@@ -3,7 +3,7 @@ class Constants {
     static const String baseApiServer="$_baseServer/api";
     static const String imageURL="$_baseServer/uploads/";
     static const String fileURL="$_baseServer/uploads/file/";
-    static const String rentalEndPoint="$baseApiServer/rental/transaction";
-    static const String history="$baseApiServer/rental/history";
-    static const String userRegistration="$baseApiServer/user/register";
+    static const String rentalEndPoint="rental/transaction";
+    static const String history="rental/history";
+    static const String userRegistration="user/register";
 }
