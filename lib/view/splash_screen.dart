@@ -97,8 +97,8 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _navigate() async {
-    AuthProvider authViewModel = AuthProvider();
-    UserModel? user = await authViewModel.checkAuthStatus();
+    AuthProvider authProvider = AuthProvider();
+    UserModel? user = await authProvider.checkAuthStatus();
     if (user != null) {
       Navigator.pushReplacementNamed(context, AppRoutes.navbar);
     } else {

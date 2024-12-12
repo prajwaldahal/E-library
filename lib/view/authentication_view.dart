@@ -11,9 +11,9 @@ class AuthView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Consumer<AuthProvider>(
-        builder: (context, authViewModel, child) {
-          _handleLoadingState(context, authViewModel);
-          _handleSignInState(context, authViewModel);
+        builder: (context, authProvider, child) {
+          _handleLoadingState(context, authProvider);
+          _handleSignInState(context, authProvider);
 
           return Center(
             child: Column(
@@ -27,7 +27,7 @@ class AuthView extends StatelessWidget {
                 const SizedBox(height: 30),
                 ElevatedButton.icon(
                   onPressed: () async {
-                    await authViewModel.signInWithGoogle();
+                    await authProvider.signInWithGoogle();
                   },
                   icon: Image.asset(
                       "assets/icons/google.png",
@@ -62,16 +62,16 @@ class AuthView extends StatelessWidget {
     );
   }
 
-  void _handleLoadingState(BuildContext context, AuthProvider authViewModel) {
-    if (authViewModel.isLoading) {
+  void _handleLoadingState(BuildContext context, AuthProvider authProvider) {
+    if (authProvider.isLoading) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         CustomLoadingIndicator.show(context);
       });
     }
   }
 
-  void _handleSignInState(BuildContext context, AuthProvider authViewModel) {
-    if (authViewModel.isSignedIn) {
+  void _handleSignInState(BuildContext context, AuthProvider authProvider) {
+    if (authProvider.isSignedIn) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         CustomLoadingIndicator.hide(context);
         Navigator.pushReplacementNamed(context, AppRoutes.navbar);
