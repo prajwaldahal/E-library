@@ -2,7 +2,6 @@ import 'package:elibrary/providers/auth_provider.dart';
 import 'package:elibrary/providers/history_book_provider.dart';
 import 'package:elibrary/providers/pdf_provider.dart';
 import 'package:elibrary/providers/rented_book_provider.dart';
-import 'package:elibrary/services/api_services.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';

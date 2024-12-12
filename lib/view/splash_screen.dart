@@ -5,6 +5,8 @@ import '../common/styles/app_colors.dart';
 import '../common/styles/app_textstyle.dart';
 import '../model/user_model.dart';
 import '../providers/auth_provider.dart';
+import '../services/app_config_service.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -16,10 +18,19 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(
-      const Duration(seconds: 3),
-      _navigate,
-    );
+    _checkServerConnection();
+  }
+
+  Future<void> _checkServerConnection() async {
+    bool isConnected = await AppConfigService.checkServerConnection();
+    if (isConnected) {
+      Future.delayed(
+        const Duration(seconds: 3),
+        _navigate,
+      );
+    } else {
+      await AppConfigService.showServerErrorDialog(context);
+    }
   }
 
   @override
@@ -76,9 +87,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
               const SizedBox(height: 30),
               const CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(
-                  AppColors.progressIndicatorColorLight,
-                ),
+                valueColor: AlwaysStoppedAnimation<Color>(AppColors.progressIndicatorColorLight),
               ),
             ],
           ),
