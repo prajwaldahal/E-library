@@ -1,0 +1,49 @@
+name: elibrary
+description: "E-Book rental App"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  firebase_auth: ^5.3.1
+  firebase_core: ^3.4.0
+  google_sign_in: ^6.2.2
+  provider: ^6.1.2
+  flutter_secure_storage: ^9.2.2
+  animated_text_kit: ^4.2.2
+  persistent_bottom_nav_bar: ^6.2.1
+  flutter_rating_bar: ^4.0.1
+  khalti_checkout_flutter: ^1.0.0-dev.2
+  sqflite: ^2.4.1
+  path: ^1.9.0
+  syncfusion_flutter_pdfviewer: ^26.1.41
+
+
+dependency_overrides:
+  web: ^0.5.1  # Force compatible version of web package
+
+dev_dependencies:
+  flutter_launcher_icons: "^0.14.1"
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/icons/
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: false
+  image_path: "assets/icons/icon.png"
+  adaptive_icon_foreground: "assets/icons/icon.png"
+  adaptive_icon_background: "#5F8F3C"
+  min_sdk_android: 21
