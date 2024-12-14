@@ -72,9 +72,9 @@ Make sure to set up Firebase Authentication for your app using **FlutterFire**.
 4. Create a file `lib/common/constants/payment_gateway_constant.dart` with your Khalti public key and secret key:
 
     ```dart
-    class PaymentGatewayConstants {
-      static const String khaltiPublicKey = "your_khalti_public_key";
-      static const String khaltiSecretKey = "your_khalti_secret_key";
+    class PaymentGatewayConstant{
+      static const String publicKey = "your_khalti_public_key";
+      static const String secretKey = "your_khalti_secret_key";
     }
     ```
 
