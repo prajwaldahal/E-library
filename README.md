@@ -34,6 +34,11 @@ The admin panel allows administrators to manage users, books, rentals, and view 
 - Install Flutter SDK.
 - Install a code editor like Android Studio or VS Code.
 
+### Setup Firebase Authentication
+
+Make sure to set up Firebase Authentication for your app using **FlutterFire**.
+
+
 ### Setup Instructions
 
 1. Clone the repository:
@@ -79,7 +84,4 @@ The admin panel allows administrators to manage users, books, rentals, and view 
     flutter run
     ```
 
-## Setup Firebase Authentication
-
-Make sure to set up Firebase Authentication for your app using **FlutterFire**.
 
