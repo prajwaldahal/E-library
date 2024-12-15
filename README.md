@@ -4,7 +4,7 @@ An e-library application built using Flutter, designed to provide an intuitive p
 
 ## Features
 
-- **User Authentication**: Secure login and registration using Firebase Authentication.
+- **User Authentication**: Secure login using Firebase Authentication.
 - **Book Rentals**: Easy and quick rental process with detailed book information.
 - **Payment Gateway Integration**: Integrated with Khalti for seamless online payments.
 - **Rental History**: View and manage previously rented books.
