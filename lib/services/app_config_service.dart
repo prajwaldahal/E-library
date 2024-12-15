@@ -19,6 +19,7 @@ class AppConfigService {
 
   static Future<void> showServerErrorDialog(BuildContext context) async {
     showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(

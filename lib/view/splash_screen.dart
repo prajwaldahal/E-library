@@ -29,7 +29,10 @@ class _SplashScreenState extends State<SplashScreen> {
         _navigate,
       );
     } else {
-      await AppConfigService.showServerErrorDialog(context);
+      Future.delayed(
+        const Duration(seconds: 3),
+          _showDialog
+      );
     }
   }
 
@@ -104,5 +107,9 @@ class _SplashScreenState extends State<SplashScreen> {
     } else {
       Navigator.pushReplacementNamed(context, AppRoutes.auth);
     }
+  }
+
+  Future<void> _showDialog() async {
+    await AppConfigService.showServerErrorDialog(context);
   }
 }

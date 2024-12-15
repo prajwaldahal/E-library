@@ -21,7 +21,7 @@ class AppRoutes {
       case auth:
         return MaterialPageRoute(builder: (_) => const AuthView());
       case navbar:
-        return MaterialPageRoute(builder: (_) => NavBar());
+        return MaterialPageRoute(builder: (_) => const NavBar());
       case bookDetail:
         final Book book =settings.arguments as Book;
         return MaterialPageRoute(builder: (_) => BookDetailScreen(book:book));
