@@ -8,6 +8,8 @@ import 'rented_view.dart';
 import 'profile_view.dart';
 
 class NavBar extends StatefulWidget {
+  const NavBar({super.key});
+
   @override
   _NavBarState createState() => _NavBarState();
 }

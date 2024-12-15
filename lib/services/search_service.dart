@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 import '../model/book_model.dart';
 import 'api_services.dart';
 
@@ -23,7 +25,7 @@ class SearchService {
       }
       return [];
     } catch (e) {
-      print('Error fetching search results: $e');
+      debugPrint('Error fetching search results: $e');
       return [];
     }
   }

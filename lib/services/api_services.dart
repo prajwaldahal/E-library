@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:elibrary/common/constants/api_constant.dart';
 import 'package:flutter/material.dart';
+import 'package:elibrary/common/constants/api_constant.dart';
 import "package:http/http.dart" as http;
 
 class ApiService {
@@ -24,18 +24,19 @@ class ApiService {
     }
   }
 
-  Future<dynamic> post(String endpoint, Map<String, dynamic> body) async {
+  Future<dynamic> post(String endpoint, Map<String, dynamic> body, {Map<String, String>? headers}) async {
     try {
+      final uri = Uri.parse(endpoint.startsWith('http') ? endpoint : '$_baseUrl/$endpoint');
       final response = await http.post(
-        Uri.parse('$_baseUrl/$endpoint'),
-        headers: {'Content-Type': 'application/json'},
+        uri,
+        headers: headers ?? {'Content-Type': 'application/json'},
         body: json.encode(body),
       );
 
       if (response.statusCode == 200) {
         return json.decode(response.body);
       } else {
-        throw Exception('Failed to send data');
+        throw Exception('Failed to send data: ${response.body}');
       }
     } catch (e) {
       throw Exception('Error sending data: $e');

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:elibrary/services/secure_storage_helper.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -64,7 +65,7 @@ class AuthService {
     );
 
     if (response.statusCode != 200) {
-      print("Failed to register user: ${response.body}");
+      debugPrint("Failed to register user: ${response.body}");
     }
   }
 }

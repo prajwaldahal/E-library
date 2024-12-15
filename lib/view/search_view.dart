@@ -160,8 +160,8 @@ class SearchView extends StatelessWidget {
           child: Slider(
             value: viewModel.maxPrice,
             min: 0,
-            max: 500,
-            divisions: 250,
+            max: 5000,
+            divisions: 2500,
             activeColor: AppColors.primaryColorLight,
             inactiveColor: AppColors.primaryColorLight.withOpacity(0.3),
             onChanged: (value) {

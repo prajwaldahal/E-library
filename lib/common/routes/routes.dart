@@ -23,7 +23,7 @@ class AppRoutes {
       case navbar:
         return MaterialPageRoute(builder: (_) => NavBar());
       case bookDetail:
-        final Book? book =settings.arguments as Book;
+        final Book book =settings.arguments as Book;
         return MaterialPageRoute(builder: (_) => BookDetailScreen(book:book));
       default:
         return _errorRoute();

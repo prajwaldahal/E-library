@@ -1,12 +1,14 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:khalti_checkout_flutter/khalti_checkout_flutter.dart';
-import 'package:http/http.dart' as http;
 import 'package:elibrary/common/constants/payment_gateway_constant.dart';
 import '../../common/constants/api_constant.dart';
+import 'api_services.dart';
 import 'secure_storage_helper.dart';
 
+
 class KhaltiPaymentService {
+  final ApiService _apiService = ApiService();
+
   Future<String?> initiatePayment({
     required int amount,
     required String bookName,
@@ -14,29 +16,26 @@ class KhaltiPaymentService {
     required String returnUrl,
     required String websiteUrl,
   }) async {
-    final url = Uri.parse('https://a.khalti.com/api/v2/epayment/initiate/');
     final headers = {
       'Authorization': 'Key ${PaymentGatewayConstant.secretKey}',
       'Content-Type': 'application/json',
     };
-    final body = jsonEncode({
+    final body = {
       'return_url': returnUrl,
       'website_url': websiteUrl,
       'amount': amount,
       'purchase_order_id': 'order_$bookId',
       'purchase_order_name': bookName,
-    });
+    };
 
     try {
-      final response = await http.post(url, headers: headers, body: body);
-
-      if (response.statusCode == 200) {
-        final responseBody = jsonDecode(response.body);
-        final pidx = responseBody['pidx'];
+      final response = await _apiService.post(Constants.khaltiPaymentInitiator, body,headers: headers);
+      if (response != null && response['pidx'] != null) {
+        final pidx = response['pidx'];
         debugPrint('Payment initiation successful. Pidx: $pidx');
         return pidx;
       } else {
-        debugPrint('Payment initiation failed: ${response.body}');
+        debugPrint('Payment initiation failed: $response');
         return null;
       }
     } catch (e) {
@@ -60,30 +59,25 @@ class KhaltiPaymentService {
         return;
       }
 
-      final response = await http.post(
-        Uri.parse(Constants.rentalEndPoint),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode({
-          'userId': uid,
-          'isbn': isbn,
-          'rental_date': DateTime.now().toLocal().toString().split(' ')[0],
-          'expiry_date': expiryDate.toLocal().toString().split(' ')[0],
-          'amount_paid': amountPaid,
-        }),
-      );
+      final body = {
+        'userId': uid,
+        'isbn': isbn,
+        'rental_date': DateTime.now().toLocal().toString().split(' ')[0],
+        'expiry_date': expiryDate.toLocal().toString().split(' ')[0],
+        'amount_paid': amountPaid,
+      };
 
-      if (response.statusCode == 200) {
+      final response = await _apiService.post(Constants.rentalEndPoint, body);
+      if (response != null) {
         debugPrint('Rental transaction inserted successfully.');
-        debugPrint(response.body);
+        debugPrint(response.toString());
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Rental transaction inserted successfully.')),
         );
       } else {
-        debugPrint('Failed to insert rental transaction: ${response.body}');
+        debugPrint('Failed to insert rental transaction.');
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to insert rental transaction: ${response.body}')),
+          const SnackBar(content: Text('Failed to insert rental transaction.')),
         );
       }
     } catch (e) {
