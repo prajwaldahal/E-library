@@ -8,7 +8,7 @@ An e-library application built using Flutter, designed to provide an intuitive p
 - **Book Rentals**: Easy and quick rental process with detailed book information.
 - **Payment Gateway Integration**: Integrated with Khalti for seamless online payments.
 - **Rental History**: View and manage previously rented books.
-- **PDF Management**: Download and view book files securely.
+- **PDF Viewer**: read rented book using inbuilt pdf viewer.
 
 ## Technologies Used
 
